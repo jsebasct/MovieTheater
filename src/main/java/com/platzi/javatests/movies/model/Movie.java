@@ -33,4 +33,14 @@ public class Movie {
     public Genre getGenre() {
         return genre;
     }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", minutes=" + minutes +
+                ", genre=" + genre +
+                '}';
+    }
 }
