@@ -32,7 +32,8 @@ public class MovieRepositoryJDBC implements MovieRepository {
 
     @Override
     public Movie findById(long id) {
-        return null;
+        Object[] args = {id};
+        return template.queryForObject("select * from movies where id = ?", args, movieMapper);
     }
 
     @Override
@@ -44,6 +45,9 @@ public class MovieRepositoryJDBC implements MovieRepository {
 
     @Override
     public void saveOrUpdate(Movie movie) {
-
+        int updated = template.update("insert into movies (name, minutes, genre) values (? , ? , ?)", movie.getName(),
+                movie.getMinutes(),
+                movie.getGenre().toString());
+        System.out.println("Actualizados " + updated);
     }
 }
