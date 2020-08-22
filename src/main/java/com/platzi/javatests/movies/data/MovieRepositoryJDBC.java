@@ -21,7 +21,8 @@ public class MovieRepositoryJDBC implements MovieRepository {
             return new Movie(resultSet.getInt("id"),
                     resultSet.getString("name"),
                     resultSet.getInt("minutes"),
-                    Genre.valueOf(resultSet.getString("genre"))
+                    Genre.valueOf(resultSet.getString("genre")),
+                    resultSet.getString("director")
             );
         }
     };

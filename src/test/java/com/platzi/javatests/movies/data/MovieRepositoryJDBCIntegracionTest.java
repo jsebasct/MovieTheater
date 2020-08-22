@@ -37,11 +37,11 @@ public class MovieRepositoryJDBCIntegracionTest {
 
     @Test
     public void insertMovie() {
-        Movie movie = new Movie("Super 8", 112, Genre.THRILLER);
+        Movie movie = new Movie("Super 8", 112, Genre.THRILLER, "J.J. Abrams");
         repository.saveOrUpdate(movie);
         Movie movideFromDB = repository.findById(4);
 
-        Movie expectedMovie = new Movie(4,"Super 8", 112, Genre.THRILLER);
+        Movie expectedMovie = new Movie(4,"Super 8", 112, Genre.THRILLER, "J.J. Abrams");
         assertThat(movideFromDB, is(expectedMovie));
     }
 
@@ -50,28 +50,28 @@ public class MovieRepositoryJDBCIntegracionTest {
 
         Collection<Movie> todas = repository.findAll();
         assertThat(todas, is(Arrays.asList(
-                new Movie(1, "Dark Knight", 152, Genre.ACTION),
-                new Movie(2, "Memento", 113, Genre.THRILLER),
-                new Movie(3, "Matrix", 136, Genre.ACTION)
+                new Movie(1, "Dark Knight", 152, Genre.ACTION, "Christopher Nolan"),
+                new Movie(2, "Memento", 113, Genre.THRILLER, "Christopher Nolan"),
+                new Movie(3, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
         )));
     }
 
     @Test
     public void loadMovieById() {
         Movie mo = repository.findById(2);
-        assertThat(mo, is(new Movie(2, "Memento", 113, Genre.THRILLER)));
+        assertThat(mo, is(new Movie(2, "Memento", 113, Genre.THRILLER, "Christopher Nolan")));
     }
 
     @Test
     public void findMoviesByName() {
         Collection<Movie> todas = repository.findByName("matrix");
         assertThat(todas, is(Arrays.asList(
-                new Movie(3, "Matrix", 136, Genre.ACTION)
+                new Movie(3, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
         )));
 
         Collection<Movie> mat = repository.findByName("mat");
         assertThat(mat, is(Arrays.asList(
-                new Movie(3, "Matrix", 136, Genre.ACTION)
+                new Movie(3, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
         )));
     }
 

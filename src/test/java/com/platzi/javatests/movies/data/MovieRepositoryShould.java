@@ -22,13 +22,13 @@ public class MovieRepositoryShould {
 
         Mockito.when(repo.findAll()).thenReturn(
                 Arrays.asList(
-                   new Movie(1, "Dark Knight", 152, Genre.ACTION),
-                   new Movie(2, "Memento", 113, Genre.THRILLER),
-                   new Movie(3, "Something about Mary", 152, Genre.COMEDY),
-                   new Movie(4, "Super 8", 152, Genre.THRILLER),
-                   new Movie(5, "Scream", 152, Genre.HORROR),
-                   new Movie(6, "Home Alone", 152, Genre.COMEDY),
-                   new Movie(7, "Matrix", 152, Genre.ACTION)
+                        new Movie(1, "Dark Knight", 152, Genre.ACTION, "Christopher Nolan"),
+                        new Movie(2, "Memento", 113, Genre.THRILLER, "Christopher Nolan"),
+                        new Movie(3, "There's Something About Mary", 119, Genre.COMEDY, "Peter Farrelly, Bobby Farrelly"),
+                        new Movie(4, "Super 8", 112, Genre.THRILLER, "J.J. Abrams"),
+                        new Movie(5, "Scream", 111, Genre.HORROR, "Wes Craven"),
+                        new Movie(6, "Home Alone", 103, Genre.COMEDY, "Chris Columbus"),
+                        new Movie(7, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
                 )
         );
 
