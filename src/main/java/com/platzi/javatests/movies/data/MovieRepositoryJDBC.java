@@ -50,4 +50,11 @@ public class MovieRepositoryJDBC implements MovieRepository {
                 movie.getGenre().toString());
         System.out.println("Actualizados " + updated);
     }
+
+    @Override
+    public Collection<Movie> findByName(String movieTitle) {
+        Object[] args = {"%" + movieTitle.toLowerCase() + "%"};
+        String queryString = "select * from movies where LOWER(name) like ?";
+        return template.query(queryString, args, movieMapper);
+    }
 }

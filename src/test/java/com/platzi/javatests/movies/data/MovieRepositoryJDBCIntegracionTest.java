@@ -62,6 +62,19 @@ public class MovieRepositoryJDBCIntegracionTest {
         assertThat(mo, is(new Movie(2, "Memento", 113, Genre.THRILLER)));
     }
 
+    @Test
+    public void findMoviesByName() {
+        Collection<Movie> todas = repository.findByName("matrix");
+        assertThat(todas, is(Arrays.asList(
+                new Movie(3, "Matrix", 136, Genre.ACTION)
+        )));
+
+        Collection<Movie> mat = repository.findByName("mat");
+        assertThat(mat, is(Arrays.asList(
+                new Movie(3, "Matrix", 136, Genre.ACTION)
+        )));
+    }
+
     @After
     public void tearDown() throws Exception {
         final Statement s = driver.getConnection().createStatement();
