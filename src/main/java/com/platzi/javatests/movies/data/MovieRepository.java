@@ -11,4 +11,6 @@ public interface MovieRepository {
     void saveOrUpdate(Movie movie);
 
     Collection<Movie> findByName(String movieTitle);
+
+    Collection<Movie> findByDirector(String directorName);
 }

@@ -75,6 +75,14 @@ public class MovieRepositoryJDBCIntegracionTest {
         )));
     }
 
+    @Test
+    public void findByDirector() {
+        Collection<Movie> moviesByDirector = repository.findByDirector("wachow");
+        assertThat(moviesByDirector, is(Arrays.asList(
+                new Movie(3, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
+        )));
+    }
+
     @After
     public void tearDown() throws Exception {
         final Statement s = driver.getConnection().createStatement();

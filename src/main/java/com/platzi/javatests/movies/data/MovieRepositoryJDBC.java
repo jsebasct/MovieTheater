@@ -58,4 +58,11 @@ public class MovieRepositoryJDBC implements MovieRepository {
         String queryString = "select * from movies where LOWER(name) like ?";
         return template.query(queryString, args, movieMapper);
     }
+
+    @Override
+    public Collection<Movie> findByDirector(String directorName) {
+        String queryString = "select * from movies where LOWER(director) like ?";
+        Object[] args = {"%" + directorName.toLowerCase() + "%"};
+        return template.query(queryString, args, movieMapper);
+    }
 }
