@@ -13,4 +13,6 @@ public interface MovieRepository {
     Collection<Movie> findByName(String movieTitle);
 
     Collection<Movie> findByDirector(String directorName);
+
+    Collection<Movie> findByTemplate(Movie template);
 }

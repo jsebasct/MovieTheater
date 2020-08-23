@@ -4,6 +4,7 @@ import com.platzi.javatests.movies.data.MovieRepository;
 import com.platzi.javatests.movies.model.Genre;
 import com.platzi.javatests.movies.model.Movie;
 import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -51,6 +52,19 @@ public class MovieServiceShould {
 
         Collection<Movie> movies = movieService.findMoviesByLength(119);
         assertThat(getMovieIds(movies), CoreMatchers.is(Arrays.asList(2, 3, 4, 5, 6)) );
+    }
+
+    @Test
+    public void return_movies_by_template() {
+        String name = null; // no queremos buscar por nombre
+        Integer minutes = 150; // 2h 30m
+        Genre genre = Genre.ACTION;
+        String directorName = null;
+        Movie template = new Movie(name, minutes, genre, directorName);
+
+        Collection<Movie> movies = movieService.findMoviesByTemplate(template);
+        //assertThat(getMovieIds(movies), CoreMatchers.is(Arrays.asList(2, 3, 4, 5, 6)) );
+        Assert.assertEquals(1, movies.size());
     }
 
     private List<Integer> getMovieIds(Collection<Movie> movies) {

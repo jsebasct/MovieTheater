@@ -2,10 +2,8 @@ package com.platzi.javatests.movies.data;
 
 import com.platzi.javatests.movies.model.Genre;
 import com.platzi.javatests.movies.model.Movie;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.Test;
+import com.platzi.javatests.movies.service.MovieService;
+import org.junit.*;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -81,6 +79,27 @@ public class MovieRepositoryJDBCIntegracionTest {
         assertThat(moviesByDirector, is(Arrays.asList(
                 new Movie(3, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
         )));
+    }
+
+    @Test
+    public void findByTemplate() {
+
+        String name = null; // no queremos buscar por nombre
+        Integer minutes = 150; // 2h 30m
+        Genre genre = Genre.ACTION;
+        String director = null;
+        Movie template = new Movie(name, minutes, genre, director);
+
+//        MovieService movieService = new MovieService(repo);
+
+//        Collection<Movie> moviesByDirector = repository.findByTemplate(template);
+//        assertThat(moviesByDirector, is(Arrays.asList(
+//                new Movie(3, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
+//        )));
+
+        Collection<Movie> moviesByDirector = repository.findByTemplate(template);
+        //assertThat(movies, CoreMatchers.is(movies.size()) );
+        Assert.assertEquals(1, moviesByDirector.size());
     }
 
     @After
