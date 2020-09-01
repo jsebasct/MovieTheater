@@ -4,26 +4,31 @@ import com.platzi.javatests.movies.data.MovieRepository;
 import com.platzi.javatests.movies.model.Genre;
 import com.platzi.javatests.movies.model.Movie;
 import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
-public class MovieServiceShould {
+public class MovieServiceTest {
 
+    @InjectMocks
     private MovieService movieService;
+
+    @Mock
+    private MovieRepository movieRepository;
 
     @Before
     public void setUp() throws Exception {
-
-        MovieRepository movieRepository = Mockito.mock(MovieRepository.class);
+        MockitoAnnotations.initMocks(this);
 
         Mockito.when(movieRepository.findAll()).thenReturn(
                 Arrays.asList(
@@ -36,8 +41,6 @@ public class MovieServiceShould {
                         new Movie(7, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
                 )
         );
-
-        movieService = new MovieService(movieRepository);
     }
 
     @Test

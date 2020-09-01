@@ -4,6 +4,8 @@ import com.platzi.javatests.movies.model.Genre;
 import com.platzi.javatests.movies.model.Movie;
 import com.platzi.javatests.movies.service.MovieService;
 import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -16,9 +18,11 @@ import static org.junit.Assert.*;
 
 public class MovieRepositoryShould {
 
-    @Test
-    public void return_movies_by_genre() {
-        MovieRepository repo = Mockito.mock(MovieRepository.class);
+    private MovieRepository repo;
+
+    @Before
+    public void setUp() throws Exception {
+        repo = Mockito.mock(MovieRepository.class);
 
         Mockito.when(repo.findAll()).thenReturn(
                 Arrays.asList(
@@ -31,6 +35,10 @@ public class MovieRepositoryShould {
                         new Movie(7, "Matrix", 136, Genre.ACTION, "Lana Wachowski, Lilly Wachowski")
                 )
         );
+    }
+
+    @Test
+    public void return_movies_by_genre() {
 
         MovieService service = new MovieService(repo);
         Collection<Movie> moviesByGenre = service.findMoviesByGenre(Genre.COMEDY);
@@ -46,4 +54,18 @@ public class MovieRepositoryShould {
         assertThat(comedyIDs, CoreMatchers.is(Arrays.asList(3, 6)));
     }
 
+//    @Test
+//    public void return_movies_by_template() {
+//        String name = null; // no queremos buscar por nombre
+//        Integer minutes = 150; // 2h 30m
+//        Genre genre = Genre.ACTION;
+//        String director = null;
+//        Movie template = new Movie(name, minutes, genre, director);
+//
+//        MovieService movieService = new MovieService(repo);
+//
+//        Collection<Movie> movies = movieService.findMoviesByTemplate(template);
+//        //assertThat(movies, CoreMatchers.is(movies.size()) );
+//        Assert.assertEquals(1, movies.size());
+//    }
 }
